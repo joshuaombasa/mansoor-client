@@ -11,6 +11,13 @@ import VendorLayout from './components/VendorLayout'
 import VendorEquipment from './pages/vendor/VendorEquipment'
 import EquipmentDetails from './pages/equipment/EquipmentDetails'
 import Login from './pages/Login'
+import VendorEquipmentDetails from './pages/vendor/VendorEquipmentDetails'
+import Details from './components/Details'
+import Photos from './components/Photos'
+import Pricing from './components/Pricing'
+import Reviews from './pages/vendor/Reviews'
+import Dashboard from './pages/vendor/Dashboard'
+import Income from './pages/vendor/Income'
 
 function App() {
   const router = createBrowserRouter(createRoutesFromElements(
@@ -20,7 +27,16 @@ function App() {
       <Route path='equipment' element={<Equipment />} />
       <Route path='equipment/:id' element={<EquipmentDetails />} />
       <Route path='vendor' element={<VendorLayout />}>
+        <Route index element={<Dashboard />} />
         <Route path='equipment' element={<VendorEquipment />} />
+        <Route path='equipment/:id' element={<VendorEquipmentDetails />}>
+          <Route index element={<Details />} />
+          <Route path='pricing' element={<Pricing />} />
+          <Route path='photos' element={<Photos />} />
+          <Route />
+        </Route>
+        <Route path='reviews' element={<Reviews />} />
+        <Route path='income' element={<Income/>}/>
       </Route>
       <Route path='login' element={<Login />} />
     </Route>
