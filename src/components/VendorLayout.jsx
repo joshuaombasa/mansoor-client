@@ -5,10 +5,10 @@ export default function VendorLayout() {
     return (
         <div className="vendor--layout--container">
             <nav>
-                <Link to="">Dashboard</Link>
-                <Link to="">Income</Link>
+                <Link to=".">Dashboard</Link>
+                <Link to="income">Income</Link>
                 <Link to="equipment">Machinery</Link>
-                <Link to="">Reviews</Link>
+                <Link to="reviews">Reviews</Link>
             </nav>
             <Outlet/>
         </div>
