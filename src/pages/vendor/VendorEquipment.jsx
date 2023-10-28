@@ -35,7 +35,7 @@ export default function VendorEquipment() {
     ))
 
     return (
-        <div className="vendor--equipment--page">
+        <div className="vendor-page-width vendor--equipment--page">
             <h1>Your listed equipment</h1>
             <div className="vendor--equipment--page--container">
                 {equipmentElements}
