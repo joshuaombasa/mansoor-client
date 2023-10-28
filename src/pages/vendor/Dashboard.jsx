@@ -37,7 +37,7 @@ export default function Dashboard() {
     ))
     
     return (
-        <div className="dashboard--page">
+        <div className="vendor-page-width dashboard--page">
             <div className="dashboard--page--container">
                 <h1>Welcome!</h1>
                 <div className="income--section">
