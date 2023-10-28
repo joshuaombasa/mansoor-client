@@ -159,7 +159,7 @@ export default function Reviews() {
     }
 
     return (
-        <div className="reviews--page">
+        <div className="vendor-page-width reviews--page">
             <h1>Your Reviews</h1>
             <div className="reviews--page--container">
                 <div className="rating--section">
