@@ -28,7 +28,7 @@ export default function VendorEquipmentDetails() {
 
 
     return (
-        <div className="vendor--equipment--details--page">
+        <div className="vendor-page-width vendor--equipment--details--page">
             <div className="vendor--equipment--details--page--container">
                 <div className="top--section">
                     <img src={selectedVendorEquipment.imageUrl} alt="" />
