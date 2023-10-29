@@ -10,6 +10,11 @@ export default function loginReducer(state = initialState, action) {
                 user: action.payload,
                 isAuthenticated: true,
             }
+        case "LOGOUT_USER":
+            return {
+                user: {},
+                isAuthenticated: false,
+            }
         default:
             return state
     }
