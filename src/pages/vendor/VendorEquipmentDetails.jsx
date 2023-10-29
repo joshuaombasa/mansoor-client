@@ -24,9 +24,6 @@ export default function VendorEquipmentDetails() {
         )
     }
 
-    console.log(selectedVendorEquipment)
-
-
     return (
         <div className="vendor-page-width vendor--equipment--details--page">
             <div className="vendor--equipment--details--page--container">
