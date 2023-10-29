@@ -12,8 +12,6 @@ export default function Income() {
         setShowAmount("none")
     }
 
-    console.log(showAmount)
-
     const incomeList = [
         { id: "1", month: "January", income: 120000 },
         { id: "2", month: "February", income: 95000 },
@@ -29,6 +27,20 @@ export default function Income() {
         { id: "12", month: "December", income: 500000 }
     ];
 
+    const transactionsData = [
+        { amount: 720, date: "Oct 25, '23", id: "1" },
+        { amount: 560, date: "Sep 15, '23", id: "2" },
+        { amount: 980, date: "Aug 3, '23", id: "3" },
+        { amount: 850, date: "Jul 19, '23", id: "4" },
+        { amount: 670, date: "Jun 8, '23", id: "5" },
+        { amount: 430, date: "May 17, '23", id: "6" },
+        { amount: 790, date: "Apr 28, '23", id: "7" },
+        { amount: 920, date: "Mar 5, '23", id: "8" },
+        { amount: 500, date: "Feb 14, '23", id: "9" },
+        { amount: 670, date: "Jan 23, '23", id: "10" }
+      ];
+      
+
     const barElements = incomeList.map(item => (
         <div key={item.id} className="bar--container">
             <div className="bar">
@@ -40,6 +52,13 @@ export default function Income() {
                 </span>
             </div>
             <p>{item.month.slice(0, 2)}</p>
+        </div>
+    ))
+
+    const incomeCardElements = transactionsData.map(item => (
+        <div key={item.id} className="transaction--card">
+            <h4>Ksh {item.amount}</h4>
+            <span>{item.date}</span>
         </div>
     ))
 
@@ -56,27 +75,27 @@ export default function Income() {
                     <div className="income--levels--container">
                         <div className="level-line">
                             <p>500000</p>
-                            <hr class="dotted"></hr>
+                            <hr className="dotted"></hr>
                         </div>
                         <div className="level-line">
                             <p>400000</p>
-                            <hr class="dotted"></hr>
+                            <hr className="dotted"></hr>
                         </div>
                         <div className="level-line">
                             <p>300000</p>
-                            <hr class="dotted"></hr>
+                            <hr className="dotted"></hr>
                         </div>
                         <div className="level-line">
                             <p>200000</p>
-                            <hr class="dotted"></hr>
+                            <hr className="dotted"></hr>
                         </div>
                         <div className="level-line">
                             <p>100000</p>
-                            <hr class="dotted"></hr>
+                            <hr className="dotted"></hr>
                         </div>
                         <div className="level-line">
                             <p>0</p>
-                            <hr class="dotted"></hr>
+                            <hr className="dotted"></hr>
                         </div>
                     </div>
                     <section 
@@ -85,7 +104,13 @@ export default function Income() {
                         {barElements}
                     </section>
                 </div>
-
+                <div className="transactions--area">
+                    <div className="transactions--header">
+                        <h3>Your transactions ({transactionsData.length})</h3>
+                        <p>Last 30 days</p>
+                    </div>
+                    {incomeCardElements}
+                </div>
             </div>
         </div>
     )
