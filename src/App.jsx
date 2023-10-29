@@ -1,6 +1,5 @@
 import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+
 import './App.css'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout'
@@ -18,6 +17,7 @@ import Pricing from './components/Pricing'
 import Reviews from './pages/vendor/Reviews'
 import Dashboard from './pages/vendor/Dashboard'
 import Income from './pages/vendor/Income'
+import AuthRequired from './components/AuthRequired'
 
 function App() {
   const router = createBrowserRouter(createRoutesFromElements(
@@ -26,17 +26,19 @@ function App() {
       <Route path='about' element={<About />} />
       <Route path='equipment' element={<Equipment />} />
       <Route path='equipment/:id' element={<EquipmentDetails />} />
-      <Route path='vendor' element={<VendorLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path='equipment' element={<VendorEquipment />} />
-        <Route path='equipment/:id' element={<VendorEquipmentDetails />}>
-          <Route index element={<Details />} />
-          <Route path='pricing' element={<Pricing />} />
-          <Route path='photos' element={<Photos />} />
-          <Route />
+      <Route element={<AuthRequired />}>
+        <Route path='vendor' element={<VendorLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path='equipment' element={<VendorEquipment />} />
+          <Route path='equipment/:id' element={<VendorEquipmentDetails />}>
+            <Route index element={<Details />} />
+            <Route path='pricing' element={<Pricing />} />
+            <Route path='photos' element={<Photos />} />
+            <Route />
+          </Route>
+          <Route path='reviews' element={<Reviews />} />
+          <Route path='income' element={<Income />} />
         </Route>
-        <Route path='reviews' element={<Reviews />} />
-        <Route path='income' element={<Income/>}/>
       </Route>
       <Route path='login' element={<Login />} />
     </Route>
