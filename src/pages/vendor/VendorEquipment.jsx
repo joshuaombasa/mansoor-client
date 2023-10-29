@@ -23,7 +23,7 @@ export default function VendorEquipment() {
     }
 
     const equipmentElements = vendorEquipment.map(item => (
-        <div>
+        <div key={item.id}>
             <Link to={item.id} className="vendor-equipment-item">
                 <img src={item.imageUrl} alt="" />
                 <div>
