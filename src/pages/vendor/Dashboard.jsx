@@ -26,7 +26,7 @@ export default function Dashboard() {
     }
 
     const equipmentElements = vendorEquipment.map(item => (
-        <div className="vendor-equipment-item">
+        <div key={item.id} className="vendor-equipment-item">
                 <img src={item.imageUrl} alt="" />
                 <div>
                     <h3>{item.name}</h3>
