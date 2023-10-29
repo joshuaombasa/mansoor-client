@@ -36,13 +36,13 @@ export default function Reviews() {
     function starGenerator(rating) {
         const stars = []
         for (let i = 0; i < rating; i++) {
-            stars.push(<BsStarFill style={{ color: "#FF8C38" }} />)
+            stars.push(<BsStarFill key={`a${i}`} style={{ color: "#FF8C38" }} />)
         }
 
         if (rating < 5) {
             const blankStars = 5 - rating
             for (let i = 0; i < blankStars; i++) {
-                stars.push(<BsStarFill style={{ color: "#8C8C8C" }} />)
+                stars.push(<BsStarFill key={`b${i}`} style={{ color: "#8C8C8C" }} />)
             }
         }
 
@@ -85,7 +85,7 @@ export default function Reviews() {
     }
 
     const reviewElements = reviews.map(review => (
-        <div key={review.id} className="review--container">
+        <div  key={review.id} className="review--container">
             <>{starGenerator(review.rating)}</>
             <div className="ratings--meta">
                 <span className="name">{review.name}</span>
