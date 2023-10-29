@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate,useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import loginUser from "../redux/action-creators/loginUser";
 import { loginVendor } from "../api";
@@ -11,7 +11,12 @@ export default function Login() {
         password: "",
     })
 
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const redirectTo = searchParams.get("redirectTo")
+
     const location = useLocation()
+    
    const message = location.state ? location.state.message : ""
 
     const [error, setError] = useState("")
@@ -38,7 +43,7 @@ export default function Login() {
             try {
                 const data = await loginVendor(formData)
                 dispatch(loginUser(data.user))
-                navigate("/vendor")
+                navigate(redirectTo || "/vendor")
             } catch (error) {
                 setError(error)
             }
