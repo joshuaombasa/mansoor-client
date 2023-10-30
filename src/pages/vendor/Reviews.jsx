@@ -1,37 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsStarFill } from 'react-icons/bs';
+import { getVendorReviews } from "../../api";
+import { useSelector, useDispatch } from "react-redux";
+import vendorReviewsAction from "../../redux/action-creators/vendorReviews";
 
 export default function Reviews() {
-    const reviews = [
-        {
-            rating: 4,
-            name: "John Doe",
-            date: "October 20, 2023",
-            text: "The Loader was a game-changer for our construction project. It handled heavy materials effortlessly and significantly sped up our work. Highly satisfied with its performance.",
-            id: "1",
-        },
-        {
-            rating: 5,
-            name: "Jane Smith",
-            date: "October 15, 2023",
-            text: "We relied on the Crane for our latest building construction, and it exceeded our expectations. The precision and power of the Crane made the task smooth and efficient. Would definitely use it again.",
-            id: "2",
-        },
-        {
-            rating: 3,
-            name: "Michael Johnson",
-            date: "October 12, 2023",
-            text: "The Compactor did an adequate job, although we had hoped for a more seamless experience. It required some adjustments to achieve the desired results. Decent equipment overall.",
-            id: "3",
-        },
-        {
-            rating: 5,
-            name: "Emily Williams",
-            date: "October 10, 2023",
-            text: "The Truck we rented was reliable and robust. It transported materials efficiently and proved to be a vital asset for our project. Very satisfied with its performance and durability.",
-            id: "4",
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+    const reviews = useSelector(state => state.reviews)
+    const dispatch = useDispatch()
+
+    React.useEffect(() => {
+        const getData = async () => {
+            try {
+                setLoading(true)
+                const data = await getVendorReviews()
+                dispatch(vendorReviewsAction(data))
+            } catch (error) {
+                setError(error)
+            } finally {
+                setLoading(false)
+            }
         }
-    ];
+        getData()
+    },[])
+
+    if (loading) {
+        return (
+            <div className="equipment--page">
+                <h1>Loading...</h1>
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <>
+                <h1>Error: {error.message}</h1>
+                <pre>{error.status} - {error.statusText}</pre>
+            </>
+        )
+    }
+
 
     function starGenerator(rating) {
         const stars = []
