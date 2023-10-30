@@ -1,12 +1,8 @@
-export default function getSelectedVendorMachine(id) {
+export default function getSelectedVendorMachine(data) {
     return (dispatch) => {
-        fetch(`http://localhost:3000/api/equipment/${id}`)
-             .then(res => res.json())
-             .then(data => {
-                dispatch({
-                    type: "GET_SELECTED_VENDOR_MACHINE",
-                    payload: data
-                })
-             })
+        dispatch({
+            type: "GET_SELECTED_VENDOR_MACHINE",
+            payload: data
+        })
     }
 }
