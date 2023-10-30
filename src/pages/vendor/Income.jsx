@@ -1,8 +1,34 @@
 import React, { useState } from "react";
+import { getVendorIncome } from "../../api";
+import { getVendorTransactions } from "../../api";
+import { useDispatch, useSelector } from "react-redux";
+import vendorIncomeAction from "../../redux/action-creators/vendorIncomeAction";
+import vendorTransactionsAction from "../../redux/action-creators/vendorTansactionsAction";
 
 export default function Income() {
 
     const [showAmount, setShowAmount] = React.useState("none")
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+    const incomeList = useSelector(state => state.incomeList)
+    const transactionsData = useSelector(state => state.transactionsData)
+    const dispatch = useDispatch()
+
+    React.useEffect(() => {
+        async function getData() {
+            try {
+                const income = await getVendorIncome()
+                const transactions = await getVendorTransactions()
+                dispatch(vendorIncomeAction(income))
+                dispatch(vendorTransactionsAction(transactions))
+            } catch (error) {
+                setError(error)
+            } finally {
+                setLoading(false)
+            }
+        }
+        getData()
+    },[])
 
     function toggleEntry() {
         setShowAmount("block")
@@ -12,33 +38,22 @@ export default function Income() {
         setShowAmount("none")
     }
 
-    const incomeList = [
-        { id: "1", month: "January", income: 120000 },
-        { id: "2", month: "February", income: 95000 },
-        { id: "3", month: "March", income: 405000 },
-        { id: "4", month: "April", income: 80000 },
-        { id: "5", month: "May", income: 315000 },
-        { id: "6", month: "June", income: 90000 },
-        { id: "7", month: "July", income: 110000 },
-        { id: "8", month: "August", income: 100000 },
-        { id: "9", month: "September", income: 85000 },
-        { id: "10", month: "October", income: 125000 },
-        { id: "11", month: "November", income: 98000 },
-        { id: "12", month: "December", income: 500000 }
-    ];
+    if (loading) {
+        return (
+            <div className="equipment--page">
+                <h1>Loading...</h1>
+            </div>
+        )
+    }
 
-    const transactionsData = [
-        { amount: 720, date: "Oct 25, '23", id: "1" },
-        { amount: 560, date: "Sep 15, '23", id: "2" },
-        { amount: 980, date: "Aug 3, '23", id: "3" },
-        { amount: 850, date: "Jul 19, '23", id: "4" },
-        { amount: 670, date: "Jun 8, '23", id: "5" },
-        { amount: 430, date: "May 17, '23", id: "6" },
-        { amount: 790, date: "Apr 28, '23", id: "7" },
-        { amount: 920, date: "Mar 5, '23", id: "8" },
-        { amount: 500, date: "Feb 14, '23", id: "9" },
-        { amount: 670, date: "Jan 23, '23", id: "10" }
-      ];
+    if (error) {
+        return (
+            <>
+                <h1>Error: {error.message}</h1>
+                <pre>{error.status} - {error.statusText}</pre>
+            </>
+        )
+    }
       
 
     const barElements = incomeList.map(item => (
