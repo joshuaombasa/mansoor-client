@@ -11,7 +11,7 @@ export default function About() {
                 <p>With a rich history spanning over three decades, we have established ourselves as a reliable partner for contractors and construction professionals seeking top-notch equipment for their ventures.</p>
                 <div className="cta--area">
                     <p>We are committed to delivering excellence in every aspect of our service, from equipment selection to on-site assistance and technical support.</p>
-                    <Link>Explore our equipment</Link>
+                    <Link to="/equipment">Explore our equipment</Link>
                 </div>
             </div>
         </div>
