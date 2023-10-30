@@ -2,18 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useParams, NavLink, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import getSelectedVendorMachine from "../../redux/action-creators/getSelectedVendorMachine";
+import { getSelectedEquipment } from "../../api";
+
 export default function VendorEquipmentDetails() {
 
     const [loading, setLoading] = useState(true)
+    const[error, setError] = useState("")
     const params = useParams()
 
     const selectedVendorEquipment = useSelector(state => state.selectedVendorEquipment)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        setLoading(true)
-        dispatch(getSelectedVendorMachine(params.id))
-        setLoading(false)
+        async function getData() {
+            try {
+                setLoading(true)
+                const data = await getSelectedEquipment(params.id)
+                dispatch(getSelectedVendorMachine(data))
+            } catch (error) {
+                setError(error)
+            } finally {
+                setLoading(false)
+            }
+        }
+        getData()
     }, [])
 
     if (loading) {
@@ -21,6 +33,15 @@ export default function VendorEquipmentDetails() {
             <div className="vendor--equipment--details--page">
                 <h1>Loading...</h1>
             </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <>
+                <h1>Error: {error.message}</h1>
+                <pre>{error.status} - {error.statusText}</pre>
+            </>
         )
     }
 
