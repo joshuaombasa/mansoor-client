@@ -1,14 +1,31 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 export default function VendorLayout() {
+    const activeStyle = {
+        textDecoration: "underline"
+    }
+
     return (
         <div className="vendor--layout--container">
             <nav>
-                <Link to=".">Dashboard</Link>
-                <Link to="income">Income</Link>
-                <Link to="equipment">Machinery</Link>
-                <Link to="reviews">Reviews</Link>
+                <NavLink
+                     style={({isActive}) => isActive ? activeStyle : null} 
+                     to="."
+                     end
+                >Dashboard</NavLink>
+                <NavLink
+                     style={({isActive}) => isActive ? activeStyle : null} 
+                     to="income"
+                >Income</NavLink>
+                <NavLink
+                     style={({isActive}) => isActive ? activeStyle : null} 
+                     to="equipment"
+                >Machinery</NavLink>
+                <NavLink
+                     style={({isActive}) => isActive ? activeStyle : null} 
+                     to="reviews"
+                >Reviews</NavLink>
             </nav>
             <Outlet/>
         </div>
