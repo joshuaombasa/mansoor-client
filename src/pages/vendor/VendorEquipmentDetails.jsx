@@ -45,6 +45,10 @@ export default function VendorEquipmentDetails() {
         )
     }
 
+    const activeStyle = {
+        textDecoration: "underline"
+    }
+
     return (
         <div className="vendor-page-width vendor--equipment--details--page">
             <div className="vendor--equipment--details--page--container">
@@ -57,9 +61,19 @@ export default function VendorEquipmentDetails() {
                 </div>
                 <div className="bottom--section">
                     <nav>
-                        <NavLink to=".">Details</NavLink>
-                        <NavLink to="pricing">Pricing</NavLink>
-                        <NavLink to="photos">Photos</NavLink>
+                        <NavLink
+                           style={({isActive}) => isActive ? activeStyle : null} 
+                           to="."
+                           end
+                        >Details</NavLink>
+                        <NavLink
+                           style={({isActive}) => isActive ? activeStyle : null} 
+                           to="pricing"
+                        >Pricing</NavLink>
+                        <NavLink
+                           style={({isActive}) => isActive ? activeStyle : null} 
+                           to="photos"
+                        >Photos</NavLink>
                     </nav>
                     <Outlet context={selectedVendorEquipment} />
                 </div>
