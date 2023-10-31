@@ -11,14 +11,30 @@ export default function Header() {
         dispatch(logoutUser())
     }
 
+    const activeStyle = {
+        textDecoration: "underline"
+    }
+
     return (
         <header>
             <Link className="logo">mansoor</Link>
             <nav>
-                <NavLink to="about">About</NavLink>
-                <NavLink to="/equipment">Machinery</NavLink>
-                <NavLink to="/vendor">Vendor</NavLink>
-                <NavLink to="/login">Login</NavLink>
+                <NavLink
+                    style={({isActive}) => isActive ? activeStyle : null} 
+                    to="about"
+                >About</NavLink>
+                <NavLink
+                    style={({isActive}) => isActive ? activeStyle : null} 
+                    to="/equipment"
+                >Machinery</NavLink>
+                <NavLink
+                    style={({isActive}) => isActive ? activeStyle : null} 
+                    to="/vendor"
+                >Vendor</NavLink>
+                <NavLink
+                    style={({isActive}) => isActive ? activeStyle : null} 
+                    to="/login"
+                >Login</NavLink>
                 <button 
                    onClick={handleLogout} 
                    className="logout--btn"
