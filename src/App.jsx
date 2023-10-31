@@ -18,6 +18,7 @@ import Reviews from './pages/vendor/Reviews'
 import Dashboard from './pages/vendor/Dashboard'
 import Income from './pages/vendor/Income'
 import AuthRequired from './components/AuthRequired'
+import Error from './components/Error'
 
 function App() {
   const router = createBrowserRouter(createRoutesFromElements(
