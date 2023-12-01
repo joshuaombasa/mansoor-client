@@ -4,6 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import loginUser from "../redux/action-creators/loginUser";
 import { loginVendor } from "../api";
 
+
+export async function loader() {
+    return null 
+}
+
 export default function Login() {
 
     const [formData, setFormData] = useState({
