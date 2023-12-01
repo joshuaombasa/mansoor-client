@@ -9,6 +9,10 @@ export async function loader() {
     return null 
 }
 
+export async function action({request}) {
+    return null
+}
+
 export default function Login() {
 
     const [formData, setFormData] = useState({
