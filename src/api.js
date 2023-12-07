@@ -19,16 +19,7 @@ export async function loginVendor(formData) {
 }
 
 export async function getAllEquipment() {
-    const res = await  fetch("http://localhost:3000/api/equipment")
-    const data = await res.json() 
-    if (!res.ok) {
-        throw {
-            message: data.message,
-            statusText: res.statusText,
-            status: res.status
-        }
-    }
-    return data
+    
 }
 
 export async function getSelectedEquipment(id) {
