@@ -14,6 +14,7 @@ export async function loginVendor(formData) {
             status: res.status
         }
     }
+    
 
     return data
 }
