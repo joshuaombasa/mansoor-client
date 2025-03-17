@@ -123,7 +123,8 @@ export default function Income() {
                     <div className="transactions--header">
                         <h3>Your transactions ({transactionsData.length})</h3>
                         <p>Last 30 days</p>
-                    </div>
+       
+ </div>
                     {incomeCardElements}
                 </div>
             </div>
